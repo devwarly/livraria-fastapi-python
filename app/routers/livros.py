@@ -34,36 +34,30 @@ async def adicionar_livro(livro: LivroSchema):
     return {"message": "Livro adicionado com sucesso", "livros": Livros}'''
 
 @router.post("/")
-async def adicionar_livro(livro: LivroCreate):
-    db = SessionLocal()
+async def adicionar_livro(livro: LivroCreate, db: Session = Depends(get_db)):
+    return livro_service.adicinar_livro(livro, db)
 
-    novo_livro = LivroModel(
-        titulo = livro.titulo,
-        autor = livro.autor,
-        ano_publicacao = livro.ano_publicacao
-    )
+@router.put("/livros/{index}")
+async def atualizar_livro(index: int, livro: LivroCreate, db: Session = Depends(get_db)):
 
-    db.add(novo_livro)
-    db.commit()
-    db.refresh(novo_livro)
-    db.close()
-    return {"message": "Livro adicionado com sucesso."}
+    livro_db = livro_service.atualizar_livro(index, livro, db)
 
-'''@router.put("/livros/{index}")
-async def atualizar_livro(index: int, new_livro: LivroSchema):
+    if not livro_db:
+         raise HTTPException(status_code=404, detail="Livro não encontrado")
 
-    if index > len(Livros) or index < 0:
-        raise HTTPException(status_code=404, detail="Livro não encontrado")
-
-    Livros[index] = new_livro
-    return {"message": "Livro autualizado com sucesso!", "livros": Livros}
+    return livro_db
 
 @router.delete("/livros/{index}")
-async def deletar_livro(index: int):
-    if index > len(Livros) or index < 0:
-            raise HTTPException(status_code=404, detail="Livro não encontrado")
-    
-    Livros.pop(index)
-    return {"message": "Livro Deletado com sucesso!", "livros": Livros}'''
+async def deletar_livro(index: int, db: Session = Depends(get_db)):
+    removido = livro_service.remover_livro(index, db)
+
+    db.close()
+
+    if not removido:
+        raise HTTPException(status_code=404, detail="Livro não encontrado")
+
+    return {
+        "message": "Livro removido com sucesso!!"
+    }
 
 
