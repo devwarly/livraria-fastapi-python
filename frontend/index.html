@@ -8,7 +8,42 @@
 </head>
 <body>
 
-    <h2>Aula</h2>
+    <div class="the-blur" id="blur" onclick="btnCadastrar()"></div>
+
+    <header class="cabacalho">
+        <div class="cab-title">
+            <h2>Biblioteca</h2>
+        </div>
+
+        <div>
+            <button class="btn" onclick="btnCadastrar()">Cadastrar Livro</button>
+        </div>
+    </header>
+
+    <section class="container">
+        
+        <div class="card card-cadastrar" id="card-form">
+            <div class="card-title">
+                <h2 class="nome-livro">Novo Livro</h2>
+                <h2 class="close" onclick="btnCadastrar()">X</h2>
+            </div>
+            
+
+            <form action="formLivro" id="formLivro">
+                <input class="input" type="text" id="titulo" placeholder="Título do livro" required>
+                <input class="input" type="text" id="autor" placeholder="Autor" required>
+                <input class="input" type="number" id="ano_publicacao" placeholder="Ano da publicação" required>
+            
+                <button class="btn-adicionar" type="submit">Adicionar Livro</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Livros Cadastrados</h2>
+            <div id="livrosList"></div>
+        </div>
+    </section>
+    
     
 
     <script src="js/script.js"></script>

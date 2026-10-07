@@ -1,0 +1,113 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.the-blur {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10px;
+    background-color: rgba(0, 0, 0, 0.356);
+    display: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.cabacalho {
+    background-color: aliceblue;
+    padding: 10px 20%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.cab-title h2 {
+    font-size: 1.5rem;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 10px 20%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close {
+    cursor: pointer;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.input {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px 1px #0000002c;
+}
+
+
+.btn-adicionar {
+    height: 40px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.card-cadastrar {
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    width: 100%;
+    max-width: 450px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30%;
+    z-index: 20;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    background-color: green;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .cabacalho {
+        padding: 10px 20px;
+    }
+
+    .container {
+        padding: 20px 20px;
+    }
+}
