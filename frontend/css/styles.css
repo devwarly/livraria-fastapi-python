@@ -111,3 +111,29 @@
         padding: 20px 20px;
     }
 }
+
+.livros-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+    
+}
+
+.livro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px 1px #0000002c;
+}
+
+.acoes button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+}

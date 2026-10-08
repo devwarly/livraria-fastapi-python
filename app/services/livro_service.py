@@ -11,14 +11,14 @@ def buscar_livro(id: int, db: Session):
 
 def adicinar_livro(livro: LivroCreate, db: Session):
     novo_livro = LivroModel(
-        titulo = livro.titulo,
-        autor = livro.autor,
-        ano_publicacao = livro.ano_publicacao
+        titulo=livro.titulo,
+        autor=livro.autor,
+        ano_publicacao=livro.ano_publicacao
     )
 
     db.add(novo_livro)
     db.commit()
-    db.refresh()
+    db.refresh(novo_livro)  # Correção: Passando o objeto como argumento
 
     return novo_livro
 
@@ -31,8 +31,11 @@ def atualizar_livro(id: int, livro: LivroCreate, db: Session):
     livro_db.titulo = livro.titulo
     livro_db.autor = livro.autor
     livro_db.ano_publicacao = livro.ano_publicacao
-    return livro_db
+    
+    db.commit()
+    db.refresh(livro_db)
 
+    return livro_db
 
 def remover_livro(id: int, db: Session):
     livro_db = buscar_livro(id, db)

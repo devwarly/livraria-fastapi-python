@@ -1,15 +1,14 @@
 from pydantic import BaseModel, Field
 
-class LivroSchema(BaseModel):
-    id: int
+class LivroBase(BaseModel):
     titulo: str = Field(min_length=3, max_length=100)
     autor: str = Field(min_length=3, max_length=100)
-    ano_publicacao: int | None
+    ano_publicacao: int | None = None
 
-class LivroCreate(LivroSchema):
+class LivroCreate(LivroBase):
     pass
 
-class LivroResponse(LivroSchema):
+class LivroResponse(LivroBase):
     id: int
 
     class Config:
